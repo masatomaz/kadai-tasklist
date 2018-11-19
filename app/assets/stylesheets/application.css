@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ 
+th {
+  white-space: nowrap;
+}
+
+td:nth-child(1),
+td:nth-child(2){
+   width: 1px;
+   white-space: nowrap;
+ }
+
