@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
   # before_filter :authenticate_user!
+  before_action :my_tasks
+  
   
   def index
     @tasks = current_user.tasks.all.page(params[:page])
@@ -68,4 +70,13 @@ class TasksController < ApplicationController
       redirect_to root_url
     end
   end
+  
+  def my_tasks
+    @task = current_user.tasks.find_by(id: params[:id])
+    unless @task
+      flash[:warning] = '他ユーザのタスクは閲覧できません。'
+      redirect_back(fallback_location: root_url)
+    end
+  end
+
 end
