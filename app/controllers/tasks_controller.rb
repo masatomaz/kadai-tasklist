@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
   # before_filter :authenticate_user!
-  before_action :my_tasks
+  before_action :my_tasks, only: [:show, :edit, :update, :destroy]
   
   
   def index
